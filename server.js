@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const helmet = require('helmet');
 
 const app = express();
 
@@ -20,6 +22,8 @@ const weights = require('./routes/api/weights');
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(morgan('common'));
+app.use(helmet());
 
 app.use('/api/weights', weights);
 
