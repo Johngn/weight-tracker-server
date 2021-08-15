@@ -34,4 +34,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route   DELETE /api/weights
+// @desc    delete weight
+// @access  Public
+router.delete('/:id', async (req, res) => {
+  try {
+    const weight = await Weight.findById(req.params.id);
+
+    weight.remove().then(() => res.json({ deleted: true }));
+  } catch (err) {
+    console.log(err);
+    res.status(404).send('Server error');
+  }
+});
+
 module.exports = router;
